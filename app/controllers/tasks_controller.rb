@@ -14,34 +14,29 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-  def edit
-  end
+  def edit; end
     
   def create
     @task = Task.new(task_params)
     
     if @task.save
-      # 成功
-      redirect_to tasks_path, notice: I18n.t(:新增任務成功樣版)
+      redirect_to tasks_path, notice: I18n.t(:task_add_success_template)
     else
-      # 失敗
       render :new
     end
   end
     
   def update
     if @task.update(task_params)
-        # 成功
-        redirect_to tasks_path, notice: I18n.t(:資料更新成功樣版)
+        redirect_to tasks_path, notice: I18n.t(:task_update_success_template)
     else
-        # 失敗
         render :edit
     end
   end
 
   def destroy
     @task.destroy if @task
-    redirect_to tasks_path, alert: I18n.t(:任務資料已刪除樣版)
+    redirect_to tasks_path, alert: I18n.t(:task_delete_success_template)
   end
 
   private
