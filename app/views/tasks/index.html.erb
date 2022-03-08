@@ -1,13 +1,13 @@
-<h1>任務列表</h1>
+<h1><%= t('任務列表樣版') %></h1>
 
-<%= link_to "新增任務", new_task_path %>
+<%= link_to I18n.t(:新增任務樣版), new_task_path %>
 
 <table>
   <thead>
     <tr>
-      <td>任務標題</td>
-      <td>任務內容</td>
-      <td>處理</td>
+      <td><%= t('任務標題樣版') %></td>
+      <td><%= t('任務內容樣版') %></td>
+      <td><%= t('處理樣版') %></td>
     </tr>
   </thead>
   <tbody>
@@ -16,8 +16,8 @@
       <td><%= task.title %></td>
       <td><%= task.content %></td>
       <td>
-        <%= link_to "編輯", edit_task_path(task) %>
-        <%= link_to "刪除", task_path(task), method: :delete, data: { confirm: "確認刪除" } %>
+        <%= link_to I18n.t(:編輯樣版), edit_task_path(task) %>
+        <%= link_to I18n.t(:刪除樣版), task_path(task), method: :delete, data: { confirm: I18n.t(:確認刪除樣版) } %>
       </td>
     </tr>
     <% end %>

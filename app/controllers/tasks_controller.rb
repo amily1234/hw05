@@ -22,7 +22,7 @@ class TasksController < ApplicationController
     
     if @task.save
       # 成功
-      redirect_to tasks_path, notice: "新增任務成功!"
+      redirect_to tasks_path, notice: I18n.t(:新增任務成功樣版)
     else
       # 失敗
       render :new
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
         # 成功
-        redirect_to tasks_path, notice: "資料更新成功!"
+        redirect_to tasks_path, notice: I18n.t(:資料更新成功樣版)
     else
         # 失敗
         render :edit
@@ -41,7 +41,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy if @task
-    redirect_to tasks_path, alert: "任務資料已刪除!"
+    redirect_to tasks_path, alert: I18n.t(:任務資料已刪除樣版)
   end
 
   private
@@ -50,6 +50,6 @@ class TasksController < ApplicationController
   end
 
   def find_task
-    @task = Task.find(id: params[:id])
+    @task = Task.find_by(id: params[:id])
   end
 end

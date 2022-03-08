@@ -1,6 +1,6 @@
-<h1>編輯任務</h1>
+<h1><%= t('編輯任務樣版') %></h1>
 
 <%= render "form", task: @task %>
 
 <br />
-<%= link_to '回任務列表', tasks_path %>
+<%= link_to I18n.t(:回任務列表樣版), tasks_path %>
