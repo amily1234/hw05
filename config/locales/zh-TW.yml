@@ -13,3 +13,4 @@ zh-TW:
   task_add_success_template: "新增任務成功"
   task_update_success_template: "資料更新成功"
   task_delete_success_template: "任務資料已刪除"
+  task_create_at_template: "創建時間"  
