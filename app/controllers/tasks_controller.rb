@@ -14,34 +14,29 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-  def edit
-  end
+  def edit; end
     
   def create
     @task = Task.new(task_params)
     
     if @task.save
-      # 成功
-      redirect_to tasks_path, notice: "新增任務成功!"
+      redirect_to tasks_path, notice: I18n.t(:task_add_success_template)
     else
-      # 失敗
       render :new
     end
   end
     
   def update
     if @task.update(task_params)
-        # 成功
-        redirect_to tasks_path, notice: "資料更新成功!"
+        redirect_to tasks_path, notice: I18n.t(:task_update_success_template)
     else
-        # 失敗
         render :edit
     end
   end
 
   def destroy
     @task.destroy if @task
-    redirect_to tasks_path, alert: "任務資料已刪除!"
+    redirect_to tasks_path, alert: I18n.t(:task_delete_success_template)
   end
 
   private
@@ -50,6 +45,6 @@ class TasksController < ApplicationController
   end
 
   def find_task
-    @task = Task.find(id: params[:id])
+    @task = Task.find_by(id: params[:id])
   end
 end
