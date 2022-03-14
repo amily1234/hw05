@@ -10,12 +10,12 @@ RSpec.describe Task, type: :model do
     expect(subject).to be_valid
   end 
 
-  it 'is not valid with valid title' do
+  it 'it is invalid with nil title' do
     subject.title = nil
     expect(subject).to_not be_valid
   end
 
-  it 'is not valid with valid content' do
+  it 'it is invalid with nil content' do
     subject.content = nil
     expect(subject).to_not be_valid
   end
