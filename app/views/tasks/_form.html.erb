@@ -1,4 +1,16 @@
 <%= form_for(task) do |f| %>
+
+  <% if task.errors.any? %>    
+      <div>
+        <%= pluralize(task.errors.count, I18n.t(:error_template)) %> <%= t('error_prohibiting_saving') %>
+      </div>
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
   <%= f.label :title, I18n.t(:tasks_title_template) %>
   <%= f.text_field :title %> <br />
 
