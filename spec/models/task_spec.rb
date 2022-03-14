@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-  describe Task, type: :model do 
+RSpec.describe Task, type: :model do 
 
   subject {
     Task.new({title: 'A Task', content: 'this is a content'})
@@ -12,6 +12,10 @@ require 'rails_helper'
 
   it 'is not valid with valid title' do
     subject.title = nil
+    expect(subject).to_not be_valid
+  end
+
+  it 'is not valid with valid content' do
     subject.content = nil
     expect(subject).to_not be_valid
   end
