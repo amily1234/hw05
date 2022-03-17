@@ -17,5 +17,8 @@
   <%= f.label :content, I18n.t(:tasks_content_template) %>
   <%= f.text_field :content %> <br />
 
+  <%= f.label :end_time, I18n.t(:task_end_time_template) %>
+  <%= f.time_field :end_time ,type: "datetime-local" %> <br />
+
   <%= f.submit %>
 <% end %>

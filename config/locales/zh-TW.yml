@@ -3,6 +3,7 @@ zh-TW:
   new_template: "新增任務"
   tasks_title_template: "任務標題"
   tasks_content_template: "任務內容"
+  task_end_time_template: "任務結束時間"
   action_template: "處理"
   edit_template: "編輯"
   delete_template: "刪除"
