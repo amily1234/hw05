@@ -20,5 +20,8 @@
   <%= f.label :end_time, I18n.t(:task_end_time_template) %>
   <%= f.time_field :end_time ,type: "datetime-local" %> <br />
 
+  <%= f.label :status_type, I18n.t(:task_status_template) %>
+  <%= f.select(:status_type, options_for_select([[I18n.t(:task_to_be_processed_template),I18n.t(:task_to_be_processed_template)],[I18n.t(:task_processing_template),I18n.t(:task_processing_template)], [I18n.t(:task_completed_template),I18n.t(:task_completed_template)]]), prompt: I18n.t(:please_select_a_status_template)) %> <br />
+
   <%= f.submit %>
 <% end %>
