@@ -9,8 +9,10 @@ class TasksController < ApplicationController
         .order_by_created_at
       elsif params[:sort]
         @tasks = Task.order(params[:sort])
+        @tasks = Task.order(params[:sort]).page(params[:page]).per(3)
       else
         @tasks = Task.order_by_created_at
+        @tasks = Task.order_by_created_at.page(params[:page]).per(3)
     end
   end
 
