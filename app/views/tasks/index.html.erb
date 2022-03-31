@@ -5,7 +5,7 @@
 <form action="/tasks">
   <input name="title">
   <select name="status">
-    <option value=""><%= t('all_template') %></option>all_template
+    <option value=""><%= t('all_template') %></option>
     <option value="<%= I18n.t(:task_to_be_processed_template) %>"><%= I18n.t(:task_to_be_processed_template) %></option>
     <option value="<%= I18n.t(:task_processing_template) %>"><%= I18n.t(:task_processing_template) %></option>
     <option value="<%= I18n.t(:task_completed_template) %>"><%= I18n.t(:task_completed_template) %></option>
@@ -23,6 +23,7 @@
       <td><%= link_to I18n.t(:task_create_at_template), :sort => "created_at" %></td>
       <td><%= link_to I18n.t(:task_end_time_template), :sort => "end_time" %></td>
       <td><%= t('task_status_template') %></td>
+      <td><%= link_to I18n.t(:task_priority_template), :sort => "priority_type" %></td>
       <td><%= t('action_template') %></td>
     </tr>
   </thead>
@@ -34,6 +35,7 @@
       <td><%= task.created_at.strftime("%Y/%m/%d %I:%M %p") %></td>
       <td><%= task.end_time.strftime("%Y/%m/%d %I:%M %p") %></td>
       <td><%= task.status_type %></td>
+      <td><%= task.priority_type %></td>
       <td>
         <%= link_to I18n.t(:edit_template), edit_task_path(task) %>
         <%= link_to I18n.t(:delete_template), task_path(task), method: :delete, data: { confirm: I18n.t(:sure_to_delete_template) } %>
