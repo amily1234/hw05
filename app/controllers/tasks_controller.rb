@@ -3,18 +3,15 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.order(params[:sort])
-    if params[:title] || params[:status]
-			@tasks = Task.search_title_or_content( "%"+params[:title]+"%" )			
-			.search_status_type("%"+params[:status]+"%")
-			.order_by_created_at
-
-		elsif params[:sort]
-      @tasks = Task.order(params[:sort])
-
-    else
-      @tasks = Task.order_by_created_at
+      if params[:title] || params[:status]
+        @tasks = Task.search_title_or_content( "%#{params[:title]}%" )			
+        .search_status_type( "%#{params[:status]}%" )
+        .order_by_created_at
+      elsif params[:sort]
+        @tasks = Task.order(params[:sort])
+      else
+        @tasks = Task.order_by_created_at
     end
-
   end
 
   def show
