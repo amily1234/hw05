@@ -9,4 +9,5 @@ class Task < ApplicationRecord
   scope :search_title_or_content, ->(p) { where('title LIKE ? OR content LIKE ?', p, p) }
 
   belongs_to :user
+  has_many :tags
 end
