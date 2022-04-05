@@ -45,3 +45,5 @@ zh-TW:
   Invalid_email_account_or_password_template: "無效的Email帳號或密碼"
   logout_template: "登出"
   login_template: "登入"
+  errors_not_found_template: "找不到該頁面"
+  errors_internal_server_error_template: "內部服務器錯誤"
