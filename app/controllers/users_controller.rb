@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+		@users = User.all
+	end
+  
   def new
     @user = User.new
   end
@@ -20,6 +24,26 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+  def edit
+		@user = User.find_by(id: params[:id])
+	end
+
+	def update
+		@user = User.find_by(id: params[:id])
+
+		if @user.update(user_params)
+		redirect_to users_path, notice: "使用者更新成功!"
+		else
+		render :edit
+		end
+	end
+
+  def destroy
+		@user = User.find_by(id: params[:id])
+		@user.destroy if @user
+		redirect_to users_path, notice: "使用者資料已刪除!"
+	end
 
   private
 

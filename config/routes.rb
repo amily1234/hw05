@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   delete 'logout', to: 'sessions#destroy'
   
-  resources :tasks
-  root to: 'tasks#index'
+  scope '/admin' do
+    resources :tasks
+    resources :users
+    root to: 'tasks#index'
+  end
 end
