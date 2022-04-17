@@ -1,0 +1,16 @@
+<%= form_for(@user) do |f| %>
+  <% if user.errors.any? %>    
+      <div>
+        <%= pluralize(user.errors.count, I18n.t(:error_template)) %> <%= t('error_prohibiting_saving') %>
+      </div>
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+  <%= f.label :email, I18n.t(:user_email_template) %>
+  <%= f.text_field :email %> <br />
+
+  <%= f.submit %>
+<% end %> 

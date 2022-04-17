@@ -1,1 +1,26 @@
-<%= user.tasks.sum(&:total_price) %>
+<div class="container">
+  <h3><%= t('users_template') %></h3>
+  <%= link_to I18n.t(:new_user_template), new_user_path %>
+  <br>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <td><%= t('user_email_template') %></td>
+        <td><%= t('user_tasks_template') %></td>
+        <td><%= t('action_template') %></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.tasks.count %></td>
+        <td>
+          <%= link_to I18n.t(:edit_template), edit_user_path(user) ,class:'btn btn-primary btn-sm' %>
+          <%= link_to I18n.t(:delete_template), user_path(user), method: :delete, data: { confirm: I18n.t(:sure_to_delete_template) } ,class:'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
