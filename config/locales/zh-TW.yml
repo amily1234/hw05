@@ -8,6 +8,7 @@ zh-TW:
   task_status_template: "狀態樣版"
   users_template: "使用者列表"
   user_email_template: "使用者Email"
+  user_role_template: "使用者角色"
   user_tasks_template: "使用者任務數量"
   action_template: "處理"
   edit_template: "編輯"
@@ -44,4 +45,5 @@ zh-TW:
   Invalid_email_account_or_password_template: "無效的Email帳號或密碼"
   logout_template: "登出"
   login_template: "登入"
+  login_hello_template: "您好！"
   login_success_template: "登入成功"

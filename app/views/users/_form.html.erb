@@ -12,5 +12,8 @@
   <%= f.label :email, I18n.t(:user_email_template) %>
   <%= f.text_field :email %> <br />
 
+  <%= f.label :role_id, I18n.t(:user_role_template) %>
+  <%= f.select(:role_id, options_for_select([['Dev', 1],['Admin', 2]]), prompt: "請選擇角色") %> <br />
+
   <%= f.submit %>
 <% end %> 

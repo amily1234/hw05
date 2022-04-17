@@ -1,5 +1,4 @@
 <%= form_for(task) do |f| %>
-
   <% if task.errors.any? %>    
       <div>
         <%= pluralize(task.errors.count, I18n.t(:error_template)) %> <%= t('error_prohibiting_saving') %>
@@ -12,13 +11,13 @@
   <% end %>
 
   <%= f.label :title, I18n.t(:tasks_title_template) %>
-  <%= f.text_field :title %> <br />
+  <%= f.text_field :title, class:'form-control' %> <br />
 
   <%= f.label :content, I18n.t(:tasks_content_template) %>
-  <%= f.text_field :content %> <br />
+  <%= f.text_field :content, class:'form-control' %> <br />
 
   <%= f.label :end_time, I18n.t(:task_end_time_template) %>
-  <%= f.time_field :end_time ,type: "datetime-local" %> <br />
+  <%= f.time_field :end_time ,type: "datetime-local", class:'form-control' %> <br />
 
   <%= f.label :status_type, I18n.t(:task_status_template) %>
   <%= f.select(:status_type, options_for_select([[I18n.t(:task_to_be_processed_template),I18n.t(:task_to_be_processed_template)],[I18n.t(:task_processing_template),I18n.t(:task_processing_template)], [I18n.t(:task_completed_template),I18n.t(:task_completed_template)]]), prompt: I18n.t(:please_select_a_status_template)) %> <br />
