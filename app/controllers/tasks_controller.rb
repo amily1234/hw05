@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :find_task, only: [:edit, :update, :destroy]
+  before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
     if session[:user_id]
@@ -53,12 +54,23 @@ class TasksController < ApplicationController
     redirect_to tasks_path, alert: I18n.t(:task_delete_success_template)
   end
 
+  def tag_list=(names)
+    self.tags = names.split(',').map do |item|
+      Tag.where(name: item.strip).first_or_create!
+    end
+  end
+
   private
   def task_params
-    params.require(:task).permit(:title, :content, :end_time, :status_type, :priority_type)
+    params.require(:task).permit(:title, :content, :end_time, :status_type, :priority_type, :tag_list)
   end
 
   def find_task
     @task = Current.user.tasks.find_by(id: params[:id])
+  end
+
+  def set_task
+    @task = Task.find_by(id: params[:id])
+    redirect_to root_path if @task.nil?
   end
 end
