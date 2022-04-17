@@ -24,6 +24,9 @@
 
   <%= f.label :priority_type, I18n.t(:task_priority_template) %>
   <%= f.select(:priority_type, options_for_select([[I18n.t(:high_template),I18n.t(:high_template)],[I18n.t(:medium_template),I18n.t(:medium_template)], [I18n.t(:low_template),I18n.t(:low_template)]]), prompt: I18n.t(:please_select_a_priority_template)) %> <br />
+  
+  <%= f.label :title, I18n.t(:tasks_tags_template) %>
+  <%= f.text_field :tag_list %> <br />
 
   <%= f.submit %>
 <% end %>
