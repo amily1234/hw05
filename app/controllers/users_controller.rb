@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_admin!, only: [:edit, :update, :destroy]
+
   def index
     @users = User.includes(:tasks)
   end
@@ -40,6 +42,13 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)      
+    params.require(:user).permit(:email, :password, :password_confirmation, :role_id)      
+  end
+
+  def require_admin!
+    if Current.user.role.name !="Admin"
+      flash[:alert] = "您的權限不足"
+      redirect_to users_path
+    end
   end
 end
