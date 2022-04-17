@@ -49,3 +49,5 @@ zh-TW:
   login_template: "登入"
   login_hello_template: "您好！"
   login_success_template: "登入成功"
+  errors_not_found_template: "找不到該頁面"
+  errors_internal_server_error_template: "內部服務器錯誤"
