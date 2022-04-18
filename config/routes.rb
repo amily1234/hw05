@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   post 'sign_in', to: 'sessions#create'
 
   delete 'logout', to: 'sessions#destroy'
-  
-  resources :tasks
-  resources :users
+
   root to: 'tasks#index'
+  resources :tasks
+  
+  scope '/admin' do
+    resources :users
+  end
 end

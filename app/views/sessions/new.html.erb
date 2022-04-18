@@ -11,8 +11,9 @@
       <%= form.label :password_field, I18n.t(:password_template) %>
       <%= form.password_field :password, class: "form-control", placeholder: "password" %>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 ">
       <%= form.submit I18n.t(:login_template), class:'btn btn-primary' %>
+      <%= link_to I18n.t(:user_sample_template), sign_up_path, class:'btn btn-outline-primary' %>
     </div>
   <% end %> 
 </div>

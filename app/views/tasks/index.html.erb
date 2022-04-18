@@ -1,71 +1,46 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <% if @user %>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Logged in as: <%= @user.email %></a>
-          </li>
-        <% end %>
-        <li class="nav-item">
-          <%= link_to 'Logout', logout_path, method: :delete, class: "nav-link" %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<h3><%= t('tasks_template') %></h3>
+<%= link_to I18n.t(:new_template), new_task_path %>
+<form action="/tasks">
+  <input name="title">
+  <select name="status">
+    <option value=""><%= t('all_template') %></option>
+    <option value="<%= I18n.t(:task_to_be_processed_template) %>"><%= I18n.t(:task_to_be_processed_template) %></option>
+    <option value="<%= I18n.t(:task_processing_template) %>"><%= I18n.t(:task_processing_template) %></option>
+    <option value="<%= I18n.t(:task_completed_template) %>"><%= I18n.t(:task_completed_template) %></option>
+  </select>
+  <button class="btn btn-secondary btn-sm"><%= I18n.t(:search_template) %></button>  
+</form>
 
-<div class="container">
-  <h3><%= t('tasks_template') %></h3>
-  <%= link_to I18n.t(:new_template), new_task_path %>
-  <form action="/tasks">
-    <input name="title">
-    <select name="status">
-      <option value=""><%= t('all_template') %></option>
-      <option value="<%= I18n.t(:task_to_be_processed_template) %>"><%= I18n.t(:task_to_be_processed_template) %></option>
-      <option value="<%= I18n.t(:task_processing_template) %>"><%= I18n.t(:task_processing_template) %></option>
-      <option value="<%= I18n.t(:task_completed_template) %>"><%= I18n.t(:task_completed_template) %></option>
-    </select>
-    <button class="btn btn-secondary btn-sm"><%= I18n.t(:search_template) %></button>  
-  </form>
+<br>
 
-  <br>
-
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <td><%= t('tasks_title_template') %></td>
-        <td><%= t('tasks_content_template') %></td>
-        <td><%= link_to I18n.t(:task_create_at_template), :sort => "created_at" %></td>
-        <td><%= link_to I18n.t(:task_end_time_template), :sort => "end_time" %></td>
-        <td><%= t('task_status_template') %></td>
-        <td><%= link_to I18n.t(:task_priority_template), :sort => "priority_type" %></td>
-        <td><%= t('action_template') %></td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.content %></td>
-        <td><%= task.created_at.strftime("%Y/%m/%d %I:%M %p") %></td>
-        <td><%= task.end_time.strftime("%Y/%m/%d %I:%M %p") %></td>
-        <td><%= task.status_type %></td>
-        <td><%= task.priority_type %></td>
-        <td>
-          <%= link_to I18n.t(:edit_template), edit_task_path(task) ,class:'btn btn-primary btn-sm' %>
-          <%= link_to I18n.t(:delete_template), task_path(task), method: :delete, data: { confirm: I18n.t(:sure_to_delete_template) } ,class:'btn btn-danger btn-sm' %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <td><%= t('tasks_title_template') %></td>
+      <td><%= t('tasks_content_template') %></td>
+      <td><%= link_to I18n.t(:task_create_at_template), :sort => "created_at" %></td>
+      <td><%= link_to I18n.t(:task_end_time_template), :sort => "end_time" %></td>
+      <td><%= t('task_status_template') %></td>
+      <td><%= link_to I18n.t(:task_priority_template), :sort => "priority_type" %></td>
+      <td><%= t('action_template') %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.title %></td>
+      <td><%= task.content %></td>
+      <td><%= task.created_at.strftime("%Y/%m/%d %I:%M %p") %></td>
+      <td><%= task.end_time.strftime("%Y/%m/%d %I:%M %p") %></td>
+      <td><%= task.status_type %></td>
+      <td><%= task.priority_type %></td>
+      <td>
+        <%= link_to I18n.t(:edit_template), edit_task_path(task) ,class:'btn btn-primary btn-sm' %>
+        <%= link_to I18n.t(:delete_template), task_path(task), method: :delete, data: { confirm: I18n.t(:sure_to_delete_template) } ,class:'btn btn-danger btn-sm' %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
   
-  <%= paginate @tasks %>
-</div>
+<%= paginate @tasks %>

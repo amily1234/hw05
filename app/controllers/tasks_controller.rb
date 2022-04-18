@@ -4,18 +4,20 @@ class TasksController < ApplicationController
   def index
     if session[:user_id]
       @user = User.find_by(id: session[:user_id])
-    end
-    @tasks = Current.user.tasks.order(params[:sort])
-      if params[:title] || params[:status]
-        @tasks = Current.user.tasks.search_title_or_content( "%#{params[:title]}%" )			
-        .search_status_type( "%#{params[:status]}%" )
-        .order_by_created_at
-      elsif params[:sort]
-        @tasks = Current.user.tasks.order(params[:sort])
-        @tasks = Current.user.tasks.order(params[:sort]).page(params[:page]).per(3)
-      else
-        @tasks = Current.user.tasks.order_by_created_at
-        @tasks = Current.user.tasks.order_by_created_at.page(params[:page]).per(3)
+      @tasks = Current.user.tasks.order(params[:sort])
+        if params[:title] || params[:status]
+          @tasks = Current.user.tasks.search_title_or_content( "%#{params[:title]}%" )			
+          .search_status_type( "%#{params[:status]}%" )
+          .order_by_created_at
+        elsif params[:sort]
+          @tasks = Current.user.tasks.order(params[:sort])
+          @tasks = Current.user.tasks.order(params[:sort]).page(params[:page]).per(3)
+        else
+          @tasks = Current.user.tasks.order_by_created_at
+          @tasks = Current.user.tasks.order_by_created_at.page(params[:page]).per(3)
+      end
+    elsif session[:user_id]==nil
+      redirect_to sign_in_path
     end
   end
 
