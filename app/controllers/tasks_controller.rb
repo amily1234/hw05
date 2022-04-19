@@ -4,9 +4,9 @@ class TasksController < ApplicationController
   def index
     if session[:user_id]
       @user = User.find_by(id: session[:user_id])
-      @tasks = Current.user.tasks.order(params[:sort])
+      @tasks = Current.user.tasks.order(params[:sort]).page(params[:page]).per(3)
         if params[:title] || params[:status]
-          @tasks = Current.user.tasks.search_title_or_content( "%#{params[:title]}%" )			
+          @tasks = Current.user.tasks.search_title_or_content( "%#{params[:title]}%" ).page(params[:page]).per(3)			
           .search_status_type( "%#{params[:status]}%" )
           .order_by_created_at
         elsif params[:sort]
