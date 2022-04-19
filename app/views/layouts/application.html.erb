@@ -10,8 +10,10 @@
   </head>
 
   <body>
-    <%= notice %>
-    <%= alert %>
-    <%= yield %>
+    <%= render "shared/navbar" %>
+    <div class="container">
+      <%= render "shared/flash" %>
+      <%= yield %>
+    </div>
   </body>
 </html>
